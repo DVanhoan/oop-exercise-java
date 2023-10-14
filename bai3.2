@@ -1,0 +1,41 @@
+import java.util.Arrays;
+
+public class MyPolynomial {
+    private double[] coeffs;
+
+    public MyPolynomial(double... coeffs){
+        this.coeffs = coeffs;
+    }
+    public int getDegree(){
+        return coeffs.length - 1;
+    }
+
+    public String toString() {
+        int a= coeffs.length;
+        for (int i=coeffs.length; i>=0; i--) {
+            a--;
+            System.out.println(coeffs[i-1]+"*x^"+a);
+        }
+        return null;
+    }
+
+
+    public double evaluate(double x) {
+        double result = 0;
+        int n = coeffs.length;
+        for (int i = coeffs.length - 1; i >= 0; i--) {
+            result += coeffs[i] * Math.pow(x, i);
+            n--;
+        }
+        return result;
+    }
+    public MyPolynomial add(MyPolynomial right) {
+        MyPolynomial result = this;
+        if (result.coeffs.length-1 < right.coeffs.length-1) {
+            result  = right;
+            right = this;
+        }
+        return right;
+    }
+
+}
